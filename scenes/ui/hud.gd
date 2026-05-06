@@ -8,11 +8,15 @@ extends CanvasLayer
 @onready var crosshair:      Control     = $Crosshair
 @onready var round_label:    Label       = $RoundLabel
 @onready var announcement:   Label       = $AnnouncementLabel
+@onready var settings_btn:   Button      = $SettingsButton
+
+signal settings_requested
 
 
 func _ready() -> void:
 	reload_label.visible = false
 	announcement.visible = false
+	settings_btn.pressed.connect(func(): emit_signal("settings_requested"))
 
 
 func bind_player(player: Player) -> void:

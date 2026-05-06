@@ -6,13 +6,13 @@ const WALK_SPEED       := 6.5
 const JUMP_VELOCITY    := 9.0
 const DOUBLE_JUMP_VEL  := 7.5
 const GRAVITY          := 20.0       # Also set in project physics, used here for fine control
-const MOUSE_SENS       := 0.0025
 const AIR_CONTROL      := 0.35       # 0–1 fraction of ground speed usable in air
 const DIVE_SPEED       := 18.0
 const DIVE_DURATION    := 0.28       # seconds the dive lasts
 const ROLL_SPEED       := 13.0
 const ROLL_DURATION    := 0.40
 const CLIMB_DURATION   := 0.35
+const STICK_DEAD_ZONE  := 0.15       # ignore right-stick input below this magnitude
 
 # --- State machine ---
 enum State {
@@ -55,6 +55,7 @@ func _ready() -> void:
 	if is_local_player:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		camera.current = true
+		camera.add_to_group("player_camera")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -89,9 +90,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("switch_weapon"):
 		_cycle_weapon()
 
-	elif event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 
 func _physics_process(delta: float) -> void:
 	if not is_local_player or state == State.DEAD:
@@ -111,6 +109,7 @@ func _physics_process(delta: float) -> void:
 		State.CLIMBING:
 			_process_climbing(delta)
 
+	_process_stick_look(delta)
 	move_and_slide()
 
 
@@ -264,8 +263,25 @@ func _flat_input_direction() -> Vector3:
 
 
 func _rotate_camera(mouse_delta: Vector2) -> void:
-	rotate_y(-mouse_delta.x * MOUSE_SENS)
-	head.rotate_x(-mouse_delta.y * MOUSE_SENS)
+	var sens := SettingsManager.mouse_sensitivity
+	rotate_y(-mouse_delta.x * sens)
+	head.rotate_x(-mouse_delta.y * sens)
+	head.rotation.x = clamp(head.rotation.x, -deg_to_rad(85.0), deg_to_rad(85.0))
+
+
+func _process_stick_look(delta: float) -> void:
+	# Don't rotate when settings menu is open (mouse is visible)
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+		return
+	var rx := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	var ry := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	if abs(rx) < STICK_DEAD_ZONE: rx = 0.0
+	if abs(ry) < STICK_DEAD_ZONE: ry = 0.0
+	if rx == 0.0 and ry == 0.0:
+		return
+	var sens := SettingsManager.controller_look_sens
+	rotate_y(-rx * sens * delta)
+	head.rotate_x(-ry * sens * delta)
 	head.rotation.x = clamp(head.rotation.x, -deg_to_rad(85.0), deg_to_rad(85.0))
 
 

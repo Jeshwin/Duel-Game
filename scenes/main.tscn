@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=6 format=3 uid="uid://main_scene"]
 
-[ext_resource type="Script"   path="res://scenes/main.gd"                  id="1_main"]
-[ext_resource type="PackedScene" path="res://scenes/map/arena.tscn"        id="2_arena"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn"           id="3_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/loadout_screen.tscn" id="4_loadout"]
+[ext_resource type="Script"      path="res://scenes/main.gd"                   id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/map/arena.tscn"            id="2_arena"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn"               id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/loadout_screen.tscn"    id="4_loadout"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_menu.tscn"     id="5_settings"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -15,3 +16,5 @@ script = ExtResource("1_main")
 [node name="HUD" parent="." instance=ExtResource("3_hud")]
 
 [node name="LoadoutScreen" parent="." instance=ExtResource("4_loadout")]
+
+[node name="SettingsMenu" parent="." instance=ExtResource("5_settings")]

@@ -1,0 +1,335 @@
+[gd_scene load_steps=2 format=3 uid="uid://settings_menu"]
+
+[ext_resource type="Script" path="res://scenes/ui/settings_menu.gd" id="1_settings"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_settings")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.65)
+mouse_filter = 0
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -315.0
+offset_right = 390.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="Root" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Panel/Margin/Root"]
+layout_mode = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 22
+
+[node name="TabContainer" type="TabContainer" parent="Panel/Margin/Root"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 410)
+
+[node name="Keybinds" type="VBoxContainer" parent="Panel/Margin/Root/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Keybinds"]
+layout_mode = 2
+
+[node name="ActionLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Action"
+theme_override_font_sizes/font_size = 11
+
+[node name="KBLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+text = "Keyboard / Mouse"
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+
+[node name="PadLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(130, 0)
+text = "Controller"
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+
+[node name="PadSpacer" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/Header"]
+layout_mode = 2
+custom_minimum_size = Vector2(32, 0)
+text = ""
+
+[node name="HSep" type="HSeparator" parent="Panel/Margin/Root/TabContainer/Keybinds"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Margin/Root/TabContainer/Keybinds"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 240)
+
+[node name="KeybindList" type="VBoxContainer" parent="Panel/Margin/Root/TabContainer/Keybinds/Scroll"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="HSep2" type="HSeparator" parent="Panel/Margin/Root/TabContainer/Keybinds"]
+layout_mode = 2
+
+[node name="MouseSensRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Keybinds"]
+layout_mode = 2
+
+[node name="MouseSensLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/MouseSensRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 0)
+text = "Mouse Sensitivity"
+
+[node name="MouseSensSlider" type="HSlider" parent="Panel/Margin/Root/TabContainer/Keybinds/MouseSensRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0003
+max_value = 0.008
+step = 0.0001
+value = 0.0025
+
+[node name="MouseSensValue" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/MouseSensRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(58, 0)
+text = "0.0025"
+horizontal_alignment = 2
+
+[node name="CtrlSensRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Keybinds"]
+layout_mode = 2
+
+[node name="CtrlSensLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/CtrlSensRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(180, 0)
+text = "Controller Sensitivity"
+
+[node name="CtrlSensSlider" type="HSlider" parent="Panel/Margin/Root/TabContainer/Keybinds/CtrlSensRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.5
+max_value = 8.0
+step = 0.1
+value = 2.5
+
+[node name="CtrlSensValue" type="Label" parent="Panel/Margin/Root/TabContainer/Keybinds/CtrlSensRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+text = "2.5"
+horizontal_alignment = 2
+
+[node name="Audio" type="VBoxContainer" parent="Panel/Margin/Root/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="MasterRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Audio"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Audio/MasterRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "Master Volume"
+
+[node name="MasterSlider" type="HSlider" parent="Panel/Margin/Root/TabContainer/Audio/MasterRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MasterPct" type="Label" parent="Panel/Margin/Root/TabContainer/Audio/MasterRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+text = "100%"
+horizontal_alignment = 2
+
+[node name="MusicRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Audio"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Audio/MusicRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "Music Volume"
+
+[node name="MusicSlider" type="HSlider" parent="Panel/Margin/Root/TabContainer/Audio/MusicRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="MusicPct" type="Label" parent="Panel/Margin/Root/TabContainer/Audio/MusicRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+text = "80%"
+horizontal_alignment = 2
+
+[node name="SFXRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Audio"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Audio/SFXRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "SFX Volume"
+
+[node name="SFXSlider" type="HSlider" parent="Panel/Margin/Root/TabContainer/Audio/SFXRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXPct" type="Label" parent="Panel/Margin/Root/TabContainer/Audio/SFXRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+text = "100%"
+horizontal_alignment = 2
+
+[node name="Video" type="VBoxContainer" parent="Panel/Margin/Root/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="DisplayRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Video"]
+layout_mode = 2
+
+[node name="DisplayLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Video/DisplayRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "Display Mode"
+
+[node name="DisplayOption" type="OptionButton" parent="Panel/Margin/Root/TabContainer/Video/DisplayRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+
+[node name="ResRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Video"]
+layout_mode = 2
+
+[node name="ResLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Video/ResRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "Resolution"
+
+[node name="ResOption" type="OptionButton" parent="Panel/Margin/Root/TabContainer/Video/ResRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+
+[node name="FOVRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Video"]
+layout_mode = 2
+
+[node name="FOVLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Video/FOVRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "Field of View"
+
+[node name="FOVSlider" type="HSlider" parent="Panel/Margin/Root/TabContainer/Video/FOVRow"]
+layout_mode = 2
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 60.0
+max_value = 110.0
+step = 1.0
+value = 70.0
+
+[node name="FOVValue" type="Label" parent="Panel/Margin/Root/TabContainer/Video/FOVRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+text = "70°"
+horizontal_alignment = 2
+
+[node name="VSyncRow" type="HBoxContainer" parent="Panel/Margin/Root/TabContainer/Video"]
+layout_mode = 2
+
+[node name="VSyncLabel" type="Label" parent="Panel/Margin/Root/TabContainer/Video/VSyncRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(170, 0)
+text = "VSync"
+
+[node name="VSyncCheck" type="CheckButton" parent="Panel/Margin/Root/TabContainer/Video/VSyncRow"]
+layout_mode = 2
+unique_name_in_owner = true
+button_pressed = true
+
+[node name="ButtonRow" type="HBoxContainer" parent="Panel/Margin/Root"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="ApplyButton" type="Button" parent="Panel/Margin/Root/ButtonRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+text = "Apply & Close"
+
+[node name="DefaultsButton" type="Button" parent="Panel/Margin/Root/ButtonRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
+text = "Reset Defaults"
+
+[node name="CancelButton" type="Button" parent="Panel/Margin/Root/ButtonRow"]
+layout_mode = 2
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+text = "Cancel"
+
+[node name="ListenOverlay" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -60.0
+offset_right = 190.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ListenLabel" type="Label" parent="ListenOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Press a key or button…
+(Escape to cancel)"
+horizontal_alignment = 1
+vertical_alignment = 1
